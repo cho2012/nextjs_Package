@@ -1,49 +1,16 @@
-import React, { ReactNode } from "react";
+import React from "react";
+import OldButton from "../components/oldbutton";
 
-export enum roundedEnum {
-  sm = "2px",
-  md = "4px",
-  lg = "6px",
-  full = "2000px",
-}
-export enum colorSet {
-  deep = "#520922",
-  dark = "#980c28",
-  main = "#20a1d8",
-  light = "#20dbd8",
-}
+interface Props {}
 
-interface Props {
-  children: ReactNode;
-  paddingX?: string;
-  paddingY?: string;
-  bgColor?: string;
-  bgOpacity?: string;
-  rounded?: string;
-}
-
-const Button: React.FC<Props> = ({
-  children,
-  bgColor,
-  paddingX,
-  paddingY,
-  bgOpacity,
-  rounded,
-}) => {
+const Page: React.FC<Props> = ({}) => {
   return (
-    <div
-      style={{
-        display: "inline-block",
-        backgroundColor: bgColor,
-        opacity: bgOpacity,
-        paddingInline: paddingX,
-        paddingBlock: paddingY,
-        borderRadius: rounded,
-      }}
-    >
-      {children}
+    <div>
+      <OldButton bgColor="deep" padX="">
+        click
+      </OldButton>
     </div>
   );
 };
 
-export default Button;
+export default Page;
