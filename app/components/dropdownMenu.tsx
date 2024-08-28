@@ -1,14 +1,28 @@
 "use client";
 import React, { ReactNode, useState } from "react";
+import "./dropDownMenu.module.css";
+import { useRouter } from "next/navigation";
 
 const alignType = {
   left: "",
   right: 0,
 };
 
+const funcs = {
+  logout: () => {
+    console.log("Log out!");
+  },
+};
+
+export type MenuType = {
+  title?: string;
+  icon?: JSX.Element;
+  url?: string;
+  func?: "logout";
+};
 interface Props {
   children: ReactNode;
-  menu: { title?: string; icon?: JSX.Element }[];
+  menu: Array<MenuType>;
   align?: "left" | "right";
   textColor?: string;
   bgColor?: string;
@@ -21,10 +35,15 @@ const DropdownMenu: React.FC<Props> = ({
   textColor,
   bgColor,
 }) => {
+  const router = useRouter();
   const [showMenu, setShowMenu] = useState(false);
 
   const closeHandle = () => {
     setShowMenu(false);
+  };
+
+  const meunItemHandle = (url: string) => {
+    router.push(url);
   };
 
   return (
@@ -50,7 +69,7 @@ const DropdownMenu: React.FC<Props> = ({
         style={{ position: "relative" }}
       >
         {children}
-        <div style={{ border: "solid 1px red", position: "relative" }}>
+        <div style={{ position: "relative" }}>
           {showMenu && (
             <div
               style={{
@@ -69,9 +88,13 @@ const DropdownMenu: React.FC<Props> = ({
               {menu.map((item, index) =>
                 item.icon || item.title ? (
                   <div
-                    onClick={closeHandle}
+                    onClick={() => {
+                      if (item.url) meunItemHandle(item.url);
+                      if (item.func) funcs[item.func]();
+                    }}
                     key={index}
                     style={{ display: "flex", alignItems: "center" }}
+                    className="menu-item"
                   >
                     <div>{item.icon}</div>
                     <div>{item.title}</div>
@@ -79,7 +102,7 @@ const DropdownMenu: React.FC<Props> = ({
                 ) : (
                   <div
                     key={index}
-                    style={{ borderBottom: "solid 0.5px yellow" }}
+                    style={{ borderBottom: "solid 0.5px #bcbcbc" }}
                   ></div>
                 )
               )}
