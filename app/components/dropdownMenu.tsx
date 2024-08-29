@@ -66,7 +66,7 @@ const DropdownMenu: React.FC<Props> = ({
         onClick={() => {
           setShowMenu(!showMenu);
         }}
-        style={{ position: "relative" }}
+        style={{ position: "relative", cursor: "pointer" }}
       >
         {children}
         <div style={{ position: "relative" }}>

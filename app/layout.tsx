@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import UserIcon from "./icon/userIcon";
+import BigUserIcon from "./icon/biguserIcon";
+import { text } from "stream/consumers";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +21,44 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <header className="h-[70px] border-b flex bg-white text-black">
+          <div className="w-[1000px] mx-auto flex itens-center">
+            <div className="text-[2rem] flex items-center">AI</div>
+            <div className="w-[800px] font-[50] justify-around flex  mx-auto items-center">
+              {menuItems.map((menuItems, index) => (
+                <div key={index}>
+                  <Link href={menuItems.url}>{menuItems.title}</Link>
+                </div>
+              ))}
+            </div>
+            <BigUserIcon size={50} />
+          </div>
+        </header>
+        {children}
+        <footer>footer</footer>
+      </body>
     </html>
   );
 }
+
+// const Contents = [
+//   { text: "Header" },
+//   { text: "Slide" },
+//   { text: "Banner" },
+//   { text: "Footer" },
+//   { text: "Contents" },
+// ];
+
+const menuItems: { title: string; url: string }[] = [
+  { title: "Education", url: "/education" },
+  { title: "Research", url: "/research" },
+  { title: "Innovation", url: "/innovation" },
+  { title: "Admissions + Aid", url: "/admissions-aid" },
+  { title: "Campus", url: "/campus" },
+  { title: "Life", url: "/life" },
+  { title: "News", url: "/news" },
+  { title: "Alumni", url: "/alumni" },
+  { title: "About", url: "/about" },
+  { title: "Tongle", url: "/tongle" },
+];
