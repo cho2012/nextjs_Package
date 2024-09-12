@@ -22,7 +22,7 @@ interface Props {
   padY?: PadYType;
   rounded?: BgRoundedType;
 }
-const OldButton: React.FC<Props> = ({
+export const OldButton: React.FC<Props> = ({
   children,
   bgColor,
   padX,
@@ -58,5 +58,3 @@ const OldButton: React.FC<Props> = ({
     </div>
   );
 };
-
-export default OldButton;

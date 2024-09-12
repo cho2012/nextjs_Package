@@ -1,5 +1,5 @@
 import React from "react";
-import OldButton from "../components/oldbutton";
+import { OldButton } from "../components/oldbutton";
 
 interface Props {}
 
