@@ -2,6 +2,7 @@
 import React, { ReactNode, useState } from "react";
 import "./dropDownMenu.module.css";
 import { useRouter } from "next/navigation";
+import { logoutHandle } from "@/utils/logout";
 
 const alignType = {
   left: "",
@@ -9,9 +10,7 @@ const alignType = {
 };
 
 const funcs = {
-  logout: () => {
-    console.log("Log out!");
-  },
+  logout: logoutHandle,
 };
 
 export type MenuType = {

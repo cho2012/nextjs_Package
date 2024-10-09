@@ -10,11 +10,11 @@ import { UserContext } from "@/utils/userContext";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 
 export default function Login() {
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
   const [isPasswordMarking, setIsPasswordMarking] = useState(true);
-  const router = useRouter();
 
   const userData = useContext(UserContext);
 
@@ -35,19 +35,19 @@ export default function Login() {
 
   return (
     <div className="text-gray-800 bg-white text-center pb-96 max-h-screen w-screen mx-auto  ">
-      <form onSubmit={handleSubmit} className="pb-10  w-[238px] mx-auto">
-        <div className="flex flex-col pt-[100px]">
-          <Image src={hG} alt={"picture"} className="w-[100px] mx-auto " />
-          <div className="flex justify-center text-[25px] font-[50] py-[15px]">
-            <div className=" flex text-center mx-auto  ">log in</div>
-          </div>
+      <div className="flex flex-col pt-[100px]">
+        <Image src={hG} alt={"picture"} className="w-[100px] mx-auto " />
+        <div className="flex justify-center text-[25px] font-[50] py-[15px]">
+          <div className=" flex text-center mx-auto  ">log in</div>
         </div>
+      </div>
+      <form onSubmit={handleSubmit} className="pb-10  w-[238px] mx-auto">
         <input
           className="block  mx-auto w-full p-3 mt-[30px] h-[39.5px] border-[#bbbbbb] border-[1px] font-[50] text-[15px]"
           type=" email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          placeholder="email"
+          placeholder="Email"
         />
 
         <div className="flex relative">
@@ -88,7 +88,6 @@ export default function Login() {
           Sign Up
         </Link>
       </form>
-      {message && <p>{message}</p>}
     </div>
   );
 }

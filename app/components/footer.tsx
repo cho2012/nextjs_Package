@@ -1,12 +1,16 @@
 "use client";
 import { menu } from "@/constants";
 import Link from "next/link";
-import { ReactNode, useEffect } from "react";
+import { ReactNode, useContext, useEffect } from "react";
 import Image from "next/image";
 import Ai from "@/app/image/ai.png";
+import { UserContext } from "@/utils/userContext";
+import Title from "./title";
 
 interface Props {}
 const Footer: React.FC<Props> = ({}) => {
+  const ctx = useContext(UserContext);
+
   type MenuItem = {
     title: string;
     url: string;
@@ -43,14 +47,11 @@ const Footer: React.FC<Props> = ({}) => {
   loof({ rowSize: 3 });
 
   return (
-    <footer className="bg-white text-black h-[150px] p-[30px] flex items-center  gap-[100px]">
-      <Image
-        src={Ai}
-        alt={""}
-        className="w-[50px] border-black border-[1px]"
-      ></Image>
-      <div className="text-[25px] text-[#9bffad] ">the mint case</div>
-      <div className="flex gap-[15px]  font-[50]  ">
+    <footer className="bg-white text-black h-[150px] p-[30px] flex items-center  gap-[50px] border-black border-[0.2px]">
+      <div className="text-[50px]">
+        <Title />
+      </div>
+      <div className="flex gap-[15px]  font-[50] mx-auto ">
         {block.map((item, index) => (
           <div className="flex flex-col" key={index}>
             {item.map(
@@ -67,6 +68,7 @@ const Footer: React.FC<Props> = ({}) => {
           </div>
         ))}
       </div>
+      <div className="font-[50]">visit {ctx?.visitNum}</div>
     </footer>
   );
 };

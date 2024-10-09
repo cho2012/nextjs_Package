@@ -25,8 +25,8 @@ export default function RootLayout({
         <UserProvider>
           <Header />
           <div className="min-h-[calc(100vh-220px)]">{children}</div>
+          <Footer />
         </UserProvider>
-        <Footer />
       </body>
     </html>
   );

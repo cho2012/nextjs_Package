@@ -14,8 +14,12 @@ type UserType =
 interface Props {}
 
 type UserContextType = {
+  visitNum: number;
+  setVisitNum: (num: number) => void;
   user: UserType;
   fetchUser: () => Promise<void>;
+  title: string;
+  setTitle: (title: string) => void;
 };
 
 export const UserContext = createContext<UserContextType | undefined>(
@@ -23,7 +27,14 @@ export const UserContext = createContext<UserContextType | undefined>(
 );
 
 export const UserProvider = ({ children }: { children: ReactNode }) => {
+  let storageTitle;
+  if (typeof window !== "undefined") {
+    storageTitle = localStorage.getItem("title");
+  }
+
   const [user, setUser] = useState<UserType>();
+  const [visitNum, setVisitNum] = useState<number>(-1);
+  const [title, setTitle] = useState(storageTitle || "");
 
   const fetchUser = async () => {
     try {
@@ -48,7 +59,16 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   }, []);
 
   return (
-    <UserContext.Provider value={{ user, fetchUser }}>
+    <UserContext.Provider
+      value={{
+        user,
+        fetchUser,
+        visitNum,
+        setVisitNum,
+        setTitle,
+        title,
+      }}
+    >
       {children}
     </UserContext.Provider>
   );

@@ -3,7 +3,7 @@ import React from "react";
 interface Props {}
 
 const Tongle: React.FC<Props> = ({}) => {
-  return <div>Tongle</div>;
+  return <div></div>;
 };
 
 export default Tongle;
